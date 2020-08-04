@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+  mongodb:
+    image: mongo:4.0.19
+    restart: always
+    container_name: mongodb
+    ports:
+      - 27017:27017
+
+  shelby-eureka:
+    image: shelby-eureka
+    restart: always
+    container_name: shelby-eureka
+    ports:
+      - 8761:8761
+
+  shelby-api-gateway:
+    image: shelby-api-gateway
+    restart: always
+    container_name: shelby-api-gateway
+    ports:
+      - 9080:9080
+      - 9081:9081
+    environment:
+      - SERVER_PORT=9080
+      - MANAGEMENT_SERVER_PORT=9081
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://shelby-eureka:8761/eureka
+      - ZUUL_ROUTES_FX_PATH=/fx/**
+      - ZUUL_ROUTES_FX_URL=http://shelby-fx:9090
+    depends_on:
+      - shelby-eureka
+
+  shelby-fx:
+    image: shelby-fx
+    restart: always
+    container_name: shelby-fx
+    ports:
+      - 9090:9090
+      - 9091:9091
+    environment:
+      - SPRING_DATA_MONGODB_DATABASE=shelby-fx
+      - SPRING_DATA_MONGODB_HOST=mongodb
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SERVER_PORT=9090
+      - MANAGEMENT_SERVER_PORT=9091
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://shelby-eureka:8761/eureka
+    depends_on:
+      - mongodb
+      - shelby-eureka
