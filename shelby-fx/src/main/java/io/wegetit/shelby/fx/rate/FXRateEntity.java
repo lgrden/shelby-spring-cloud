@@ -3,6 +3,7 @@ package io.wegetit.shelby.fx.rate;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,4 +40,15 @@ public class FXRateEntity {
 
     @NotNull
     private BigDecimal rate;
+
+    public static FXRateEntity of(FxProvider provider, LocalDate date, String source, String target, BigDecimal rate) {
+        return FXRateEntity.builder()
+                .id(UUID.randomUUID().toString())
+                .provider(provider)
+                .date(date)
+                .source(source)
+                .target(target)
+                .rate(rate)
+                .build();
+    }
 }
