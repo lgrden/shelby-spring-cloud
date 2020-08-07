@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/fx")
+@RequestMapping("/api/")
 public class FXRateEntityRestService {
 
     private final FXRateEntityService fxRateEntityService;
 
     @GetMapping(value = "/providers")
-    public List<FxProvider> getRate() {
+    public List<FxProvider> getProviders() {
         return List.of(FxProvider.values());
     }
 

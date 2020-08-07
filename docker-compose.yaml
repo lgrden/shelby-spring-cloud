@@ -8,16 +8,6 @@ services:
     ports:
       - 27017:27017
 
-  shelby-admin:
-    image: shelby-admin
-    restart: always
-    container_name: shelby-admin
-    ports:
-      - 8771:8771
-    environment:
-      - SERVER_PORT=8771
-      - EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE=http://shelby-eureka:8761/eureka
-
   shelby-eureka:
     image: shelby-eureka
     restart: always
@@ -34,9 +24,27 @@ services:
     environment:
       - SERVER_PORT=9080
       - EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE=http://shelby-eureka:8761/eureka
+      - ZUUL_ROUTES_SECURITY_PATH=/security/**
+      - ZUUL_ROUTES_SECURITY_URL=http://shelby-SECURITY:9091
       - ZUUL_ROUTES_FX_PATH=/fx/**
-      - ZUUL_ROUTES_FX_URL=http://shelby-fx:9090
+      - ZUUL_ROUTES_FX_URL=http://shelby-fx:9092
     depends_on:
+      - shelby-eureka
+
+  shelby-security:
+    image: shelby-security
+    restart: always
+    container_name: shelby-security
+    ports:
+      - 9091:9091
+    environment:
+      - SPRING_DATA_MONGODB_DATABASE=shelby-security
+      - SPRING_DATA_MONGODB_HOST=mongodb
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SERVER_PORT=9091
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE=http://shelby-eureka:8761/eureka
+    depends_on:
+      - mongodb
       - shelby-eureka
 
   shelby-fx:
@@ -44,12 +52,12 @@ services:
     restart: always
     container_name: shelby-fx
     ports:
-      - 9090:9090
+      - 9092:9092
     environment:
       - SPRING_DATA_MONGODB_DATABASE=shelby-fx
       - SPRING_DATA_MONGODB_HOST=mongodb
       - SPRING_DATA_MONGODB_PORT=27017
-      - SERVER_PORT=9090
+      - SERVER_PORT=9092
       - EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE=http://shelby-eureka:8761/eureka
     depends_on:
       - mongodb

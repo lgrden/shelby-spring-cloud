@@ -9,22 +9,43 @@
     <version>1.0.0</version>
   </parent>
 
-  <artifactId>shelby-eureka</artifactId>
+  <artifactId>shelby-security</artifactId>
   <packaging>jar</packaging>
 
   <dependencies>
     <dependency>
+      <groupId>io.wegetit</groupId>
+      <artifactId>shelby-commons</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-mongodb</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-openfeign</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
-    <finalName>shelby-eureka</finalName>
+    <finalName>shelby-security</finalName>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>

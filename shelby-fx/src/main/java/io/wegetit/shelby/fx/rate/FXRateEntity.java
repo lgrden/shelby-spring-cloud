@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Document(collection = "fxRates")
-@TypeAlias("fXRate")
+@TypeAlias("fxRate")
 @EqualsAndHashCode(of = "id")
 @ToString
 @AllArgsConstructor
