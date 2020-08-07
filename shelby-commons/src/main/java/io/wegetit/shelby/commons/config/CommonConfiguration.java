@@ -12,7 +12,7 @@ import com.mongodb.lang.NonNull;
 import feign.codec.ErrorDecoder;
 import io.wegetit.shelby.commons.config.error.ClientErrorDecoder;
 import io.wegetit.shelby.commons.config.error.ExceptionType;
-import io.wegetit.shelby.commons.config.error.GlobalExceptionHandler;
+import io.wegetit.shelby.commons.config.error.GlobalErrorHandler;
 import io.wegetit.shelby.commons.exceptions.ClientErrorResponseException;
 import io.wegetit.shelby.commons.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
@@ -74,8 +74,8 @@ public class CommonConfiguration {
     }
 
     @Bean
-    public GlobalExceptionHandler globalExceptionHandler() {
-        GlobalExceptionHandler exceptionHandler = new GlobalExceptionHandler();
+    public GlobalErrorHandler globalExceptionHandler() {
+        GlobalErrorHandler exceptionHandler = new GlobalErrorHandler();
         exceptionHandler.registerType(ExceptionType.builder().errorClass(EntityNotFoundException.class).status(
             HttpStatus.NOT_FOUND).logException(false).build());
         exceptionHandler.registerType(ExceptionType.builder().errorClass(ClientErrorResponseException.class).status(

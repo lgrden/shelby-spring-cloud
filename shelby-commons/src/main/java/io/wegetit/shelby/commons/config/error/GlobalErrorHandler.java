@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Slf4j
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalErrorHandler {
 
     private static final ExceptionType DEFAULT = ExceptionType.builder().errorClass(Exception.class).status(HttpStatus.INTERNAL_SERVER_ERROR).logException(true).build();
 
