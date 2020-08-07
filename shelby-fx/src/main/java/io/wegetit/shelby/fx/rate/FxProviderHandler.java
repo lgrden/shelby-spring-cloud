@@ -9,10 +9,7 @@ import java.util.List;
 @Slf4j
 public abstract class FxProviderHandler {
 
-    private final FXRateEntityService service;
-
     public FxProviderHandler(FXRateEntityService service) {
-        this.service = service;
         service.register(this);
     }
 

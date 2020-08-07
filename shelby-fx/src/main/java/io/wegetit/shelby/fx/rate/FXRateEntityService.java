@@ -1,13 +1,13 @@
 package io.wegetit.shelby.fx.rate;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.EnumMap;
-
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.EnumMap;
 
 @AllArgsConstructor
 @Service

@@ -1,14 +1,15 @@
 package io.wegetit.shelby.commons.config.error;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @ControllerAdvice
@@ -16,7 +17,7 @@ public class GlobalExceptionHandler {
 
     private static final ExceptionType DEFAULT = ExceptionType.builder().errorClass(Exception.class).status(HttpStatus.INTERNAL_SERVER_ERROR).logException(true).build();
 
-    private Map<Class<? extends Throwable>, ExceptionType> types = new HashMap<>();
+    private final Map<Class<? extends Throwable>, ExceptionType> types = new HashMap<>();
 
     public void registerType(ExceptionType type) {
         types.put(type.getErrorClass(), type);

@@ -1,18 +1,15 @@
 package io.wegetit.shelby.fx.rate;
 
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.UUID;
-import javax.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Document(collection = "fxRates")

@@ -4,8 +4,9 @@ import com.github.cloudyrock.mongock.ChangeLog;
 import com.github.cloudyrock.mongock.ChangeSet;
 import io.wegetit.shelby.commons.utils.DataLoaderUtils;
 import io.wegetit.shelby.security.user.UserEntity;
-import java.io.IOException;
 import org.springframework.data.mongodb.core.MongoTemplate;
+
+import java.io.IOException;
 
 @ChangeLog(order = "001")
 public class UsersChangeLog {

@@ -1,10 +1,11 @@
 package io.wegetit.shelby.commons.endpoints.security;
 
-import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @FeignClient("shelby-security")
 public interface UserProxy {

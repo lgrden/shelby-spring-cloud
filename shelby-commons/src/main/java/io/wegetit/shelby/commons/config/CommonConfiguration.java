@@ -9,22 +9,12 @@ import com.github.cloudyrock.mongock.Mongock;
 import com.github.cloudyrock.mongock.SpringMongockBuilder;
 import com.mongodb.MongoClient;
 import com.mongodb.lang.NonNull;
-import feign.Response;
 import feign.codec.ErrorDecoder;
 import io.wegetit.shelby.commons.config.error.ClientErrorDecoder;
 import io.wegetit.shelby.commons.config.error.ExceptionType;
 import io.wegetit.shelby.commons.config.error.GlobalExceptionHandler;
 import io.wegetit.shelby.commons.exceptions.ClientErrorResponseException;
 import io.wegetit.shelby.commons.exceptions.EntityNotFoundException;
-
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.ZoneOffset;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;
@@ -34,6 +24,12 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 import org.springframework.http.HttpStatus;
+
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Configuration
 @PropertySource("classpath:config.properties")

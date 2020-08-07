@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
-;
 
 @Getter
 @AllArgsConstructor
