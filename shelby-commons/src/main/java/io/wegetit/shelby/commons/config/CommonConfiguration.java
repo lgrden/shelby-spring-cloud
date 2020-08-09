@@ -9,11 +9,8 @@ import com.github.cloudyrock.mongock.Mongock;
 import com.github.cloudyrock.mongock.SpringMongockBuilder;
 import com.mongodb.MongoClient;
 import com.mongodb.lang.NonNull;
-import feign.codec.ErrorDecoder;
-import io.wegetit.shelby.commons.config.error.ClientErrorDecoder;
 import io.wegetit.shelby.commons.config.error.ExceptionType;
 import io.wegetit.shelby.commons.config.error.GlobalErrorHandler;
-import io.wegetit.shelby.commons.exceptions.ClientErrorResponseException;
 import io.wegetit.shelby.commons.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -74,17 +71,10 @@ public class CommonConfiguration {
     }
 
     @Bean
-    public GlobalErrorHandler globalExceptionHandler() {
-        GlobalErrorHandler exceptionHandler = new GlobalErrorHandler();
-        exceptionHandler.registerType(ExceptionType.builder().errorClass(EntityNotFoundException.class).status(
-            HttpStatus.NOT_FOUND).logException(false).build());
-        exceptionHandler.registerType(ExceptionType.builder().errorClass(ClientErrorResponseException.class).status(
-                HttpStatus.INTERNAL_SERVER_ERROR).logException(false).build());
-        return exceptionHandler;
-    }
-
-    @Bean
-    public ErrorDecoder errorDecoder(ObjectMapper mapper) {
-        return new ClientErrorDecoder(mapper);
+    public GlobalErrorHandler exceptionHandler(ObjectMapper mapper) {
+        GlobalErrorHandler handler = new GlobalErrorHandler(mapper);
+        handler.register(ExceptionType.builder().errorClass(EntityNotFoundException.class).status(
+                HttpStatus.NOT_FOUND).logException(false).build());
+        return handler;
     }
 }
