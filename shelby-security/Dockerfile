@@ -1,3 +1,3 @@
 FROM adoptopenjdk/openjdk11:latest
-COPY target/shelby-fx.jar /
-CMD java -jar /shelby-fx.jar
+COPY target/shelby-security.jar /
+CMD java -jar /shelby-security.jar
