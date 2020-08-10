@@ -22,7 +22,7 @@
     <module>shelby-eureka</module>
     <module>shelby-api-gateway</module>
     <module>shelby-security</module>
-    <module>shelby-fx</module>
+    <module>shelby-refdata</module>
   </modules>
 
   <dependencyManagement>

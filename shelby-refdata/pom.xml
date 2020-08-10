@@ -9,7 +9,7 @@
     <version>1.0.0</version>
   </parent>
 
-  <artifactId>shelby-fx</artifactId>
+  <artifactId>shelby-refdata</artifactId>
   <packaging>jar</packaging>
 
   <dependencies>
@@ -46,7 +46,7 @@
   </dependencies>
 
   <build>
-    <finalName>shelby-fx</finalName>
+    <finalName>shelby-refdata</finalName>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>

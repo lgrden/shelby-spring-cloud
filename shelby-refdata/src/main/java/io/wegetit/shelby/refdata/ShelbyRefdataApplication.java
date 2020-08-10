@@ -1,4 +1,4 @@
-package io.wegetit.shelby.fx;
+package io.wegetit.shelby.refdata;
 
 import io.wegetit.shelby.commons.config.EnableCommonConfig;
 import org.springframework.boot.SpringApplication;
@@ -10,9 +10,9 @@ import org.springframework.context.annotation.PropertySource;
 @SpringBootApplication
 @EnableCommonConfig
 @PropertySource("classpath:application.properties")
-public class ShelbyFxApplication {
+public class ShelbyRefdataApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ShelbyFxApplication.class, args);
+        SpringApplication.run(ShelbyRefdataApplication.class, args);
     }
 }

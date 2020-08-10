@@ -1,19 +1,12 @@
 version: '3.7'
 
 services:
-  mongodb:
+  shelby-mongo:
     image: mongo:4.0.19
     restart: always
-    container_name: mongodb
+    container_name: shelby-mongo
     ports:
       - 27017:27017
-
-  shelby-eureka:
-    image: shelby-eureka
-    restart: always
-    container_name: shelby-eureka
-    ports:
-      - 8761:8761
 
   shelby-api-gateway:
     image: shelby-api-gateway
@@ -39,26 +32,26 @@ services:
       - 9091:9091
     environment:
       - SPRING_DATA_MONGODB_DATABASE=shelby-security
-      - SPRING_DATA_MONGODB_HOST=mongodb
+      - SPRING_DATA_MONGODB_HOST=shelby-mongo
       - SPRING_DATA_MONGODB_PORT=27017
       - SERVER_PORT=9091
       - EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE=http://shelby-eureka:8761/eureka
     depends_on:
-      - mongodb
+      - shelby-mongo
       - shelby-eureka
 
-  shelby-fx:
-    image: shelby-fx
+  shelby-refdata:
+    image: shelby-refdata
     restart: always
-    container_name: shelby-fx
+    container_name: shelby-refdata
     ports:
       - 9092:9092
     environment:
-      - SPRING_DATA_MONGODB_DATABASE=shelby-fx
-      - SPRING_DATA_MONGODB_HOST=mongodb
+      - SPRING_DATA_MONGODB_DATABASE=shelby-refdata
+      - SPRING_DATA_MONGODB_HOST=shelby-mongo
       - SPRING_DATA_MONGODB_PORT=27017
       - SERVER_PORT=9092
       - EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE=http://shelby-eureka:8761/eureka
     depends_on:
-      - mongodb
+      - shelby-mongo
       - shelby-eureka
