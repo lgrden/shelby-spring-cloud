@@ -19,8 +19,8 @@ services:
       - EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE=http://shelby-eureka:8761/eureka
       - ZUUL_ROUTES_SECURITY_PATH=/security/**
       - ZUUL_ROUTES_SECURITY_URL=http://shelby-SECURITY:9091
-      - ZUUL_ROUTES_FX_PATH=/fx/**
-      - ZUUL_ROUTES_FX_URL=http://shelby-fx:9092
+      - ZUUL_ROUTES_REFDATA_PATH=/refdata/**
+      - ZUUL_ROUTES_REFDATA_URL=http://shelby-fx:9092
     depends_on:
       - shelby-eureka
 

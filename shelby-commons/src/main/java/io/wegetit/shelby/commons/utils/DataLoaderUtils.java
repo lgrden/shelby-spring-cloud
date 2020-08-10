@@ -13,7 +13,17 @@ import java.util.List;
 @Slf4j
 public class DataLoaderUtils {
 
+    public static <T> void loadAllIfEmpty(MongoTemplate template, String file, Class<T> type) throws IOException {
+        long count = template.getCollection(template.getCollectionName(type)).countDocuments();
+        if (count == 0) {
+            loadAll(template, file, type);
+        } else {
+            log.info("Skipped loading {} as it contains {} elements", type.getSimpleName(), count);
+        }
+    }
+
     public static <T> void loadAll(MongoTemplate template, String file, Class<T> type) throws IOException {
+        long start = System.currentTimeMillis();
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         Resource resource = resolver.getResource("/changelogs/" + file);
         if (!resource.exists()) {
@@ -25,6 +35,7 @@ public class DataLoaderUtils {
             template.remove(p);
             template.save(p);
         });
-        log.info("Loaded {} with {} elements.", type.getSimpleName(), data.size());
+        long end = System.currentTimeMillis();
+        log.info("Loaded {} with {} elements in {} ms.", type.getSimpleName(), data.size(), (end - start));
     }
 }
