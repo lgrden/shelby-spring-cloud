@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import java.io.IOException;
 
 @ChangeLog(order = "001")
-public class UsersChangeLog {
+public class SecurityChangeLog {
 
     @ChangeSet(order = "001", id = "loadUsers", author = "grlu", runAlways = true)
     public void loadUsers(MongoTemplate template) throws IOException {
