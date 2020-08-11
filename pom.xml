@@ -21,8 +21,8 @@
     <module>shelby-commons</module>
     <module>shelby-eureka</module>
     <module>shelby-api-gateway</module>
-    <module>shelby-security</module>
     <module>shelby-refdata</module>
+    <module>shelby-ui</module>
   </modules>
 
   <dependencyManagement>
