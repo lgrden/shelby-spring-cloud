@@ -1,4 +1,4 @@
-# shelby @ We Get IT
+# shelby-spring-cloud @ We Get IT
 
 ## Description
 Shelby is a simple project that shows capabilities of spring cloud with microservices.
