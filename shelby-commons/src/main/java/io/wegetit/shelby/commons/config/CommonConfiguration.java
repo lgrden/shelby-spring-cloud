@@ -33,6 +33,7 @@ import java.util.List;
 public class CommonConfiguration {
 
     @Bean
+    @SuppressWarnings("deprecation")
     public ObjectMapper getObjectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
@@ -62,7 +63,7 @@ public class CommonConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(value="changeLogScanPackage", matchIfMissing = false)
+    @ConditionalOnProperty(value="changelog.package", matchIfMissing = false)
     public Mongock mongock(MongoProperties properties, MongoClient mongoClient, @Value("${changeLogScanPackage}") String changeLogScanPackage) {
         return new SpringMongockBuilder(mongoClient, properties.getDatabase(), changeLogScanPackage)
             .setLockQuickConfig()
