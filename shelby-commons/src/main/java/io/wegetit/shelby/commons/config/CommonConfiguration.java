@@ -64,7 +64,7 @@ public class CommonConfiguration {
 
     @Bean
     @ConditionalOnProperty(value="changelog.package", matchIfMissing = false)
-    public Mongock mongock(MongoProperties properties, MongoClient mongoClient, @Value("${changeLogScanPackage}") String changeLogScanPackage) {
+    public Mongock mongock(MongoProperties properties, MongoClient mongoClient, @Value("${changelog.package}") String changeLogScanPackage) {
         return new SpringMongockBuilder(mongoClient, properties.getDatabase(), changeLogScanPackage)
             .setLockQuickConfig()
             .setChangeLogCollectionName("dbchangelog")

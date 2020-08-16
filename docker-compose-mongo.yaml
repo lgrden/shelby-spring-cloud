@@ -1,9 +1,9 @@
 version: '3.7'
 
 services:
-  mongodb:
+  shelby-mongo:
     image: mongo:4.0.19
     restart: always
-    container_name: mongodb
+    container_name: shelby-mongo
     ports:
       - 27017:27017

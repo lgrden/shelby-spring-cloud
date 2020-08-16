@@ -1,5 +1,5 @@
-@ECHO OFF
-call mvn clean install
+#!/bin/bash
+mvn clean install
 docker build -t shelby-eureka shelby-eureka
 docker build -t shelby-api-gateway shelby-api-gateway
 docker build -t shelby-refdata shelby-refdata
